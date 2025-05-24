@@ -12,7 +12,9 @@ const MainLayout = () => {
         </header>
         {/* <main className="bg-gray-50 min-h-screen"> */}
         {/* <main className="flex flex-1 items-center justify-center min-h-[calc(100vh-140px)]"> */}
-        <main className="bg-gray-50 flex-grow flex items-center justify-center">
+
+        {/* <main className="bg-gray-50 flex-grow flex items-center justify-center"> */}
+        <main className="bg-gray-50 flex-grow ">
           <Outlet />
         </main>
         <Footer />
