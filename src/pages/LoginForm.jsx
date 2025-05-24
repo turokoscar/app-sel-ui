@@ -39,12 +39,18 @@ const LoginForm = () => {
               </div>
 
               <div className="flex flex-col gap-2 mb-5">
-                <button
+                {/*                 <button
                   type="submit"
                   className="bg-pantone-7738 hover:bg-pantone-7738/80 transition-all ease-in text-white rounded-md p-2 font-medium"
                 >
-                  <NavLink to={"/evaluator"}>Iniciar sesión</NavLink>
-                </button>
+                  
+                </button> */}
+                <NavLink
+                  to={"/evaluator"}
+                  className="bg-pantone-7738 hover:bg-pantone-7738/80 transition-all ease-in text-white rounded-md p-2 font-medium text-center"
+                >
+                  Iniciar sesión
+                </NavLink>
               </div>
 
               {/*   <div className="text-center gap-2 flex justify-center items-center text-sm">
