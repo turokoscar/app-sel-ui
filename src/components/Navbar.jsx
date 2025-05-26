@@ -18,7 +18,7 @@ const Navbar = () => {
               </span>
               <div className="flex flex-col items-start justify-center text-sm leading-tight">
                 <p>Juan Pérez</p>
-                <p className="text-white/60 text-[0.75rem] sm:text-sm">
+                <p className="text-white/70 text-[0.75rem] sm:text-sm">
                   Cooperativa Agrícola El Progreso
                 </p>
               </div>

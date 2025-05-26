@@ -79,7 +79,7 @@ const getTrafficLight = (semaforo) => {
   }
 };
 
-export const DashPasosCriticos = () => {
+const CriticalSteps = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-8 py-4">
       <div className="py-4 flex justify-between items-center">
@@ -183,3 +183,5 @@ export const DashPasosCriticos = () => {
     </div>
   );
 };
+
+export default CriticalSteps;

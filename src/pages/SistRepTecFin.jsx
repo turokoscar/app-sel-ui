@@ -37,6 +37,7 @@ const SistRepTecFin = () => {
           Plataforma para la gestión y seguimiento de los Pasos Críticos del
           programa SELv2
         </p>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {cardData.map((card, index) => {
             const Icon = card.icon;
