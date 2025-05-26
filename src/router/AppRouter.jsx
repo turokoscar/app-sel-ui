@@ -6,6 +6,7 @@ import EvaluationPanel from "../pages/EvaluationPanel";
 import SistRepTecFin from "../pages/SistRepTecFin";
 import CriticalSteps from "../pages/CriticalSteps";
 import RtfReportEvaluation from "../pages/RTFReportEvaluation";
+import RegisterRtf from "../pages/RegisterRtf";
 
 export const AppRouter = () => {
   return (
@@ -13,10 +14,14 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<LoginForm />} />
-          <Route path="/evaluator" element={<EvaluationPanel />} />
           <Route path="/sistema-reporte-tecnico" element={<SistRepTecFin />} />
           <Route path="/pasos-criticos" element={<CriticalSteps />} />
+          <Route path="/evaluator" element={<EvaluationPanel />} />
           <Route path="/reporte-evaluacion" element={<RtfReportEvaluation />} />
+          <Route
+            path="/registro-reporte-evaluacion"
+            element={<RegisterRtf />}
+          />
         </Route>
       </Routes>
     </>

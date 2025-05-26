@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PageTitle from "../components/PageTitle";
 import SectionTitle from "../components/SectionTitle";
 import ProgessBar from "../components/ProgessBar";
+import { NavLink } from "react-router-dom";
 
 const indicadores = [
   {
@@ -83,12 +84,23 @@ const RtfReportEvaluation = () => {
   return (
     <>
       <div className="max-w-screen-xl mx-auto px-8 py-4">
-        <PageTitle
-          titlePage={"Evaluación de Informe RTF"}
-          subTitle={
-            "Cooperativa Agrícola El Progreso - Capacitación de Agricultores"
-          }
-        />
+        <div className="py-4 flex justify-between items-center">
+          <PageTitle
+            titlePage={"Evaluación de Informe RTF"}
+            subTitle={
+              "Cooperativa Agrícola El Progreso - Capacitación de Agricultores"
+            }
+          />
+
+          <div className="w-full flex justify-end">
+            <NavLink
+              to="/evaluator"
+              className="border border-gray-300 py-2 px-4 text-sm rounded-lg bg-white hover:bg-gray-100  transition-colors duration-200"
+            >
+              Volver al Listado
+            </NavLink>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
           <div>

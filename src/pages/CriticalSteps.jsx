@@ -112,9 +112,7 @@ const CriticalSteps = () => {
           </div>
         </div>
       </div>
-
       {/* Tabla */}
-
       <div className="overflow-hidden pt-2 pb-6">
         <h3 className="text-xl p-6 bg-gray-50 border border-gray-200">
           Lista de Pasos Críticos
