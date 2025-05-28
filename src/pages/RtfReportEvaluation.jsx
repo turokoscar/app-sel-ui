@@ -3,6 +3,7 @@ import PageTitle from "../components/PageTitle";
 import SectionTitle from "../components/SectionTitle";
 import ProgessBar from "../components/ProgessBar";
 import { NavLink } from "react-router-dom";
+import GenericTable from "../components/GenericTable";
 
 const indicadores = [
   {
@@ -19,18 +20,6 @@ const indicadores = [
   },
 ];
 
-const metasPOA = [
-  {
-    meta: "Material didáctico entregado",
-    avance: 100,
-    comentarios: "Se entregó todo el material planificado.",
-  },
-  {
-    meta: "Implementación de parcelas demostrativas",
-    avance: 75,
-    comentarios: "Se implementaron 3 de 4 parcelas planificadas.",
-  },
-];
 const ambientales = [
   {
     indicador: "Reducción de uso de agroquímicos",
@@ -79,8 +68,63 @@ const getPriorityColor = (priority) => {
       return "text-gray-300";
   }
 };
+
+// Datos para las tablas:
+
+const indicadorPCHeaderTab = [
+  { label: "Indicador", key: "indicador" },
+  { label: "Meta", key: "meta" },
+  { label: "Descripción", key: "descripcion" },
+  { label: "Evidencia", key: "evidencia" },
+];
+const indicadorPCDataTab = [
+  {
+    indicador: "Agricultores capacitados",
+    meta: 120,
+    descripcion: "Se logró la meta de capacitación.",
+    evidencia: "evidencia-capacitacion.pdf",
+  },
+  {
+    indicador: "Sesiones realizadas",
+    meta: 5,
+    descripcion: "Todas las sesiones planificadas fueron ejecutadas.",
+    evidencia: "evidencia-capacitacion.pdf",
+  },
+];
+
+const metasFHeaderTab = [
+  { label: "Meta", key: "meta" },
+  { label: "Avance", key: "avance" },
+  { label: "Comentarios", key: "comentarios" },
+];
+const metasPOATab = [
+  {
+    meta: "Material didáctico entregado",
+    avance: 100,
+    comentarios: "Se entregó todo el material planificado.",
+  },
+  {
+    meta: "Implementación de parcelas demostrativas",
+    avance: 75,
+    comentarios: "Se implementaron 3 de 4 parcelas planificadas.",
+  },
+];
+
+const metasPOA = [
+  {
+    meta: "Material didáctico entregado",
+    avance: 100,
+    comentarios: "Se entregó todo el material planificado.",
+  },
+  {
+    meta: "Implementación de parcelas demostrativas",
+    avance: 75,
+    comentarios: "Se implementaron 3 de 4 parcelas planificadas.",
+  },
+];
 const RtfReportEvaluation = () => {
   const [activeTab, setActiveTab] = useState("informe");
+  const [fileName, setFileName] = useState("");
   return (
     <>
       <div className="max-w-screen-xl mx-auto px-8 py-4">
@@ -95,7 +139,7 @@ const RtfReportEvaluation = () => {
           <div className="w-full flex justify-end">
             <NavLink
               to="/evaluator"
-              className="border border-gray-300 py-2 px-4 text-sm rounded-lg bg-white hover:bg-gray-100  transition-colors duration-200"
+              className="border border-gray-200 py-2 px-4 text-sm rounded-lg bg-white hover:bg-gray-100  transition-colors duration-200"
             >
               Volver al Listado
             </NavLink>
@@ -105,32 +149,32 @@ const RtfReportEvaluation = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
           <div>
             <div className="bg-gray-100 shadow rounded-lg p-2 mb-4">
-              <ul class="flex text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                <li class="me-2 w-full">
+              <ul className="flex text-sm font-medium text-center text-gray-400">
+                <li className="me-2 w-full">
                   <button
                     onClick={() => setActiveTab("informe")}
                     className={`inline-block px-4 py-3 text-gray-700 hover:text-gray-900 rounded-lg active w-full ${
-                      activeTab === "informe" ? "bg-white" : ""
+                      activeTab === "informe" ? "bg-white" : "bg-gray-200"
                     }`}
                   >
                     Informe
                   </button>
                 </li>
-                <li class="me-2 w-full">
+                <li className="me-2 w-full">
                   <button
                     onClick={() => setActiveTab("indicadores")}
                     className={`inline-block px-4 py-3 text-gray-700 hover:text-gray-900 rounded-lg active w-full ${
-                      activeTab === "indicadores" ? "bg-white" : ""
+                      activeTab === "indicadores" ? "bg-white" : "bg-gray-200"
                     }`}
                   >
                     Indicadores
                   </button>
                 </li>
-                <li class="me-2 w-full">
+                <li className="me-2 w-full">
                   <button
                     onClick={() => setActiveTab("cumplimiento")}
                     className={`inline-block px-4 py-3 text-gray-700 hover:text-gray-900  rounded-lg active w-full ${
-                      activeTab === "cumplimiento" ? "bg-white" : ""
+                      activeTab === "cumplimiento" ? "bg-white" : "bg-gray-200"
                     }`}
                   >
                     Cumplimiento
@@ -145,20 +189,24 @@ const RtfReportEvaluation = () => {
                 {activeTab === "informe" && (
                   <>
                     <SectionTitle title="Detalle del Informe" />
-                    <div className="bg-white shadow space-y-4 p-4 mb-4">
+                    <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg">
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <p className="text-gray-500">Fecha de Presentación</p>
+                          <p className="text-gray-400 font-medium">
+                            Fecha de Presentación
+                          </p>
                           <p>29 de enero de 2025</p>
                         </div>
                         <div>
-                          <p className="text-gray-500">Fecha de Envío</p>
+                          <p className="text-gray-400 font-medium">
+                            Fecha de Envío
+                          </p>
                           <p>29 de enero de 2025</p>
                         </div>
                       </div>
 
                       <div>
-                        <p>
+                        <p className="text-gray-800 text-sm leading-6">
                           Este informe detalla el avance del paso crítico de
                           Capacitación de Agricultores. Se han realizado 5
                           sesiones de capacitación con 120 participantes. Los
@@ -173,96 +221,47 @@ const RtfReportEvaluation = () => {
                 {activeTab === "indicadores" && (
                   <>
                     <SectionTitle title="Indicadores del Informe" />
-                    <div className="bg-white shadow space-y-4 p-4 mb-4">
-                      <div className="relative overflow-x-auto">
-                        <table className="w-full text-left rtl:text-right border border-gray-200 dark:border-gray-700 rounded-xl">
-                          <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
-                            <tr className="">
-                              <th
-                                scope="col"
-                                className="px-6 py-2 border border-gray-300"
-                              >
-                                Indicador
-                              </th>
-                              <th
-                                scope="col"
-                                className="px-6 py-2 border border-gray-300"
-                              >
-                                Meta
-                              </th>
-                              <th
-                                scope="col"
-                                className="px-6 py-2 border border-gray-300"
-                              >
-                                Descripción
-                              </th>
-                              <th
-                                scope="col"
-                                className="px-6 py-2 border border-gray-300"
-                              >
-                                Evidencia
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="text-sm">
-                            {indicadores.map((item, index) => (
-                              <tr
-                                key={index}
-                                className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700 border-gray-200"
-                              >
-                                <td className="p-4 border border-gray-300">
-                                  {item.indicador}
-                                </td>
-                                <td className="p-4 border border-gray-300">
-                                  {item.meta}
-                                </td>
-                                <td className="p-4 border border-gray-300">
-                                  {item.descripcion}
-                                </td>
-                                <td className="p-4 border border-gray-300">
-                                  <a
-                                    href={`/${item.evidencia}`}
-                                    className="text-pantone-7738 hover:underline"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {item.evidencia}
-                                  </a>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
+                    <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg">
+                      <GenericTable
+                        dataHead={indicadorPCHeaderTab}
+                        dataTable={indicadorPCDataTab}
+                      />
                     </div>
-
+                    {/* 
+const metasFHeaderTab = ["Meta", "Avance", "Comentarios"];
+const metasPOATab = [ */}
                     <SectionTitle title="Metas Físicas e Indicadores del Programa" />
-                    <div className="bg-white shadow space-y-4 p-4 mb-4">
+                    <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg">
                       {/* Metas Físicas del POA */}
                       <div>
                         <p className="text-gray-800 text-sm font-medium pb-1">
                           Metas Físicas del POA
                         </p>
                         {/* tabla */}
+                        {/*   <GenericTable
+                          dataHead={metasFHeaderTab}
+                          dataTable={metasPOATab}
+                        /> */}
+
                         <div className="relative overflow-x-auto">
-                          <table className="w-full text-left rtl:text-right border border-gray-200 dark:border-gray-700 rounded-xl">
-                            <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
+                          <table className="w-full text-sm text-left text-gray-800 border border-gray-200">
+                            <thead className="text-xs text-gray-400 bg-gray-100 border-b border-gray-200">
                               <tr className="">
                                 <th
                                   scope="col"
-                                  className="px-6 py-2 border border-gray-300"
+                                  className="px-6 py-2 border border-gray-200"
                                 >
                                   Meta
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-6 py-2 border border-gray-300"
+                                  className="px-6 py-2 border border-gray-200"
                                 >
                                   Avance
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-6 py-2 border border-gray-300"
+                                  className="px-6 py-2 border border-gray-200"
                                 >
                                   Comentarios
                                 </th>
@@ -274,10 +273,10 @@ const RtfReportEvaluation = () => {
                                   key={index}
                                   className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700 border-gray-200"
                                 >
-                                  <td className="p-4 border border-gray-300">
+                                  <td className="p-4 border border-gray-200">
                                     {item.meta}
                                   </td>
-                                  <td className="p-4 border border-gray-300 ">
+                                  <td className="p-4 border border-gray-200 ">
                                     <div className="flex items-center gap-2  w-[8rem]">
                                       <span className="text-sm font-medium text-gray-700 ">
                                         {item.avance}%
@@ -285,7 +284,7 @@ const RtfReportEvaluation = () => {
                                       <ProgessBar porcentaje={item.avance} />
                                     </div>
                                   </td>
-                                  <td className="p-4 border border-gray-300">
+                                  <td className="p-4 border border-gray-200">
                                     {item.comentarios}
                                   </td>
                                 </tr>
@@ -307,24 +306,24 @@ const RtfReportEvaluation = () => {
                           </p>
                           {/* tabla  */}
                           <div className="relative overflow-x-auto">
-                            <table className="w-full text-left rtl:text-right border border-gray-200 dark:border-gray-700 rounded-xl">
-                              <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
+                            <table className="w-full text-sm text-left text-gray-800 border border-gray-200">
+                              <thead className="text-xs text-gray-400 bg-gray-100 border-b border-gray-200">
                                 <tr className="">
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Meta
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Avance
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Observaciones
                                   </th>
@@ -336,13 +335,13 @@ const RtfReportEvaluation = () => {
                                     key={index}
                                     className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700 border-gray-200"
                                   >
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.indicador}
                                     </td>
-                                    {/*  <td className="p-4 border border-gray-300">
+                                    {/*  <td className="p-4 border border-gray-200">
                                       {item.avance}
                                     </td> */}
-                                    <td className="p-4 border border-gray-300 ">
+                                    <td className="p-4 border border-gray-200 ">
                                       <div className="flex items-center gap-2  w-[8rem]">
                                         <span className="text-sm font-medium text-gray-700 ">
                                           {item.avance}%
@@ -350,7 +349,7 @@ const RtfReportEvaluation = () => {
                                         <ProgessBar porcentaje={item.avance} />
                                       </div>
                                     </td>
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.observaciones}
                                     </td>
                                   </tr>
@@ -367,24 +366,24 @@ const RtfReportEvaluation = () => {
                           </p>
                           {/* tabla */}
                           <div className="relative overflow-x-auto">
-                            <table className="w-full text-left rtl:text-right border border-gray-200 dark:border-gray-700 rounded-xl">
-                              <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
+                            <table className="w-full text-sm text-left text-gray-800 border border-gray-200">
+                              <thead className="text-xs text-gray-400 bg-gray-100 border-b border-gray-200">
                                 <tr className="">
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Meta
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Avance
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Comentarios
                                   </th>
@@ -396,13 +395,13 @@ const RtfReportEvaluation = () => {
                                     key={index}
                                     className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700 border-gray-200"
                                   >
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.indicador}
                                     </td>
-                                    {/*    <td className="p-4 border border-gray-300">
+                                    {/*    <td className="p-4 border border-gray-200">
                                       {item.avance}
                                     </td> */}
-                                    <td className="p-4 border border-gray-300 ">
+                                    <td className="p-4 border border-gray-200 ">
                                       <div className="flex items-center gap-2  w-[8rem]">
                                         <span className="text-sm font-medium text-gray-700 ">
                                           {item.avance}%
@@ -410,7 +409,7 @@ const RtfReportEvaluation = () => {
                                         <ProgessBar porcentaje={item.avance} />
                                       </div>
                                     </td>
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.observaciones}
                                     </td>
                                   </tr>
@@ -427,24 +426,24 @@ const RtfReportEvaluation = () => {
                           </p>
                           {/* tabla */}
                           <div className="relative overflow-x-auto">
-                            <table className="w-full text-left rtl:text-right border border-gray-200 dark:border-gray-700 rounded-xl">
-                              <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
+                            <table className="w-full text-sm text-left text-gray-800 border border-gray-200">
+                              <thead className="text-xs text-gray-400 bg-gray-100 border-b border-gray-200">
                                 <tr className="">
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Meta
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Avance
                                   </th>
                                   <th
                                     scope="col"
-                                    className="px-6 py-2 border border-gray-300"
+                                    className="px-6 py-2 border border-gray-200"
                                   >
                                     Comentarios
                                   </th>
@@ -456,13 +455,13 @@ const RtfReportEvaluation = () => {
                                     key={index}
                                     className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700 border-gray-200"
                                   >
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.indicador}
                                     </td>
-                                    {/*   <td className="p-4 border border-gray-300">
+                                    {/*   <td className="p-4 border border-gray-200">
                                       {item.avance}
                                     </td> */}
-                                    <td className="p-4 border border-gray-300 ">
+                                    <td className="p-4 border border-gray-200 ">
                                       <div className="flex items-center gap-2  w-[8rem]">
                                         <span className="text-sm font-medium text-gray-700 ">
                                           {item.avance}%
@@ -470,7 +469,7 @@ const RtfReportEvaluation = () => {
                                         <ProgessBar porcentaje={item.avance} />
                                       </div>
                                     </td>
-                                    <td className="p-4 border border-gray-300">
+                                    <td className="p-4 border border-gray-200">
                                       {item.observaciones}
                                     </td>
                                   </tr>
@@ -488,7 +487,7 @@ const RtfReportEvaluation = () => {
                 {activeTab === "cumplimiento" && (
                   <>
                     <SectionTitle title="Cumplimiento del Paso Crítico" />
-                    <div className="bg-white shadow space-y-4 p-4 mb-4">
+                    <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg">
                       <p>¿Se cumplió el paso crítico? Sí</p>
                     </div>
                   </>
@@ -499,7 +498,7 @@ const RtfReportEvaluation = () => {
           {/* Columna - Detalle del Informe */}
           <div>
             <SectionTitle title={"Detalle del Informe"} />
-            <div className="bg-white shadow space-y-4 p-4 mb-4">
+            <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg">
               <div>
                 <p className="text-gray-800 text-sm font-medium pb-1">
                   Observaciones
@@ -509,7 +508,7 @@ const RtfReportEvaluation = () => {
                   id=""
                   cols="20"
                   rows="6"
-                  className="w-full border border-gray-300 rounded-lg p-2"
+                  className="w-full border border-gray-200 rounded-lg p-2"
                   placeholder="Escriba sus observaciones aquí..."
                 ></textarea>
               </div>
@@ -521,8 +520,19 @@ const RtfReportEvaluation = () => {
                   type="file"
                   id="archivo"
                   name="archivo"
-                  className="block w-full text-sm text-gray-600 border border-gray-300 rounded-lg cursor-pointer bg-white p-2 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-pantone-7738 file:text-white hover:file:bg-pantone-7738/80"
+                  accept=".pdf"
+                  onChange={(e) => {
+                    if (e.target.files.length > 0) {
+                      setFileName(e.target.files[0].name);
+                    }
+                  }}
+                  className="block w-full text-sm text-gray-600 border border-gray-200 rounded-lg cursor-pointer bg-white p-2 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-pantone-7738 file:text-white hover:file:bg-pantone-7738/80"
                 />
+                {fileName && (
+                  <p className="mt-2 text-green-600 text-sm">
+                    Archivo seleccionado: {fileName}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -543,7 +553,7 @@ const RtfReportEvaluation = () => {
                     >
                       Aprobar
                     </label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-400">
                       El informe cumple con todos los requisitos y es aprobado.
                     </p>
                   </div>
@@ -563,7 +573,7 @@ const RtfReportEvaluation = () => {
                     >
                       Observar
                     </label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-400">
                       El informe requiere correcciones o aclaraciones.
                     </p>
                   </div>
@@ -580,21 +590,21 @@ const RtfReportEvaluation = () => {
             {/*  */}
             <div>
               <SectionTitle title={"Información del Informe"} />
-              <div className="bg-white shadow space-y-4 p-4 mb-4 text-sm">
-                <div className="space-y-2">
-                  <p className="text-gray-500">Organización</p>
+              <div className="bg-white space-y-4 p-4 mb-4 border border-gray-200 rounded-b-lg text-sm font-medium">
+                <div className="space-y-2 ">
+                  <p className="text-gray-400 ">Organización</p>
                   <p>Cooperativa Agrícola El Progreso</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Paso Crítico</p>
+                  <p className="text-gray-400">Paso Crítico</p>
                   <p>Capacitación de Agricultores</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Fecha de Envío</p>
+                  <p className="text-gray-400">Fecha de Envío</p>
                   <p>29 de enero de 2025</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Estado</p>
+                  <p className="text-gray-400">Estado</p>
                   <span
                     className={`mt-1 inline-flex px-3 py-1 rounded-full font-light text-sm ${getStatusColor(
                       "Pendiente"
@@ -604,7 +614,7 @@ const RtfReportEvaluation = () => {
                   </span>
                 </div>
                 <div>
-                  <p className="text-gray-500">Prioridad</p>
+                  <p className="text-gray-400 ">Prioridad</p>
                   <p className={`text-md ${getPriorityColor("Alta")}`}>Alta</p>
                 </div>
               </div>

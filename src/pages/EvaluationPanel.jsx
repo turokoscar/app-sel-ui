@@ -1,5 +1,6 @@
 import { Check, Clock, TriangleAlert } from "lucide-react";
 import PageTitle from "../components/PageTitle";
+import SectionTitle from "../components/SectionTitle";
 
 const dataRTF = [
   {
@@ -108,7 +109,7 @@ const EvaluationPanel = () => {
         <div className="py-4 flex justify-between items-center">
           <input
             type="text"
-            className="text-md border bg-white border-gray-200 rounded-md p-2 w-1/4 "
+            className="text-md border bg-white border-gray-200 rounded-md p-2 w-1/4 placeholder:text-gray-300 placeholder:font-normal placeholder:text-md"
             placeholder="Buscar por organización o paso crítico"
           />
           <div>
@@ -117,7 +118,7 @@ const EvaluationPanel = () => {
                 id="country"
                 name="country"
                 /* autocomplete="country-name" */
-                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-200 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-800 outline-1 -outline-offset-1 outline-gray-200 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               >
                 <option value="">Todos los estados</option>
                 <option value="pendientes">Pendientes</option>
@@ -139,39 +140,34 @@ const EvaluationPanel = () => {
         {/* Tabla */}
 
         <div className="overflow-hidden pt-2 pb-6">
-          <h3 className="text-xl p-6 bg-gray-50 border border-gray-200">
-            Informes RTF Recibidos
-          </h3>
+          <SectionTitle title={"Informes RTF Recibidos"} />
           <div className="relative overflow-x-auto">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 rounded-xl ">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 ">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-800 border border-gray-200">
+              <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
                 <tr className="">
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Organización
                   </th>
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Paso Crítico
                   </th>
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Fecha Envío
                   </th>
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Prioridad
                   </th>
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Estado
                   </th>
-                  <th scope="col" className="px-6 py-6">
+                  <th scope="col" className="px-6 py-2">
                     Acción
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {dataRTF.map((item, index) => (
-                  <tr
-                    key={index}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
-                  >
+                  <tr key={index} className="bg-white border-b border-gray-200">
                     <td className="p-4">{item.organizacion}</td>
                     <td className="p-4">{item.pasoCritico}</td>
                     <td className="p-4">{item.fechaEnvio}</td>
@@ -193,7 +189,7 @@ const EvaluationPanel = () => {
                       </span>
                     </td>
                     <td className="p-4 whitespace-nowrap">
-                      <button className="min-w-[120px] border border-gray-200 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-pantone-7738">
+                      <button className="min-w-[120px] border border-gray-300 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-pantone-7738">
                         Ver detalle
                       </button>
                     </td>

@@ -1,5 +1,6 @@
 import React from "react";
 import PageTitle from "../components/PageTitle";
+import SectionTitle from "../components/SectionTitle";
 const dataPC = [
   {
     organizacion: "Cooperativa Agrícola El Progreso",
@@ -93,7 +94,7 @@ const CriticalSteps = () => {
               id="country"
               name="country"
               /* autocomplete="country-name" */
-              className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-3 pr-8 pl-3 text-lg font-medium text-gray-900 outline-1 -outline-offset-1 outline-gray-200 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
+              className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-3 pr-8 pl-3 text-lg font-medium text-gray-800 outline-1 -outline-offset-1 outline-gray-200 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
             >
               <option value="">Todos los estados</option>
               <option value="pendientes">Activos</option>
@@ -114,39 +115,34 @@ const CriticalSteps = () => {
       </div>
       {/* Tabla */}
       <div className="overflow-hidden pt-2 pb-6">
-        <h3 className="text-xl p-6 bg-gray-50 border border-gray-200">
-          Lista de Pasos Críticos
-        </h3>
+        <SectionTitle title={"Lista de Pasos Críticos"} />
         <div className="relative overflow-x-auto">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 rounded-xl ">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 ">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-800 border border-gray-200">
+            <thead className="text-xs text-gray-500 bg-gray-100 border-b border-gray-200 dark:border-gray-700">
               <tr className="">
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Nombre del Paso Crítico
                 </th>
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Fecha inicio
                 </th>
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Fecha fin
                 </th>
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Estado
                 </th>
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Semáforo
                 </th>
-                <th scope="col" className="px-6 py-6">
+                <th scope="col" className="px-6 py-2">
                   Acción
                 </th>
               </tr>
             </thead>
             <tbody>
               {dataPC.map((item, index) => (
-                <tr
-                  key={index}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
-                >
+                <tr key={index} className="bg-white border-b border-gray-200">
                   <td className="p-4">{item.pasoCritico}</td>
                   <td className="p-4">{item.fechaInicio}</td>
                   <td className="p-4">{item.fechaFin}</td>
